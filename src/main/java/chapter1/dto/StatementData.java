@@ -21,18 +21,14 @@ public record StatementData(
 	}
 
 	private static long totalAmount(final List<EnrichPerformance> performances) {
-		long result = 0;
-		for (var performance : performances) {
-			result += performance.amount();
-		}
-		return result;
+		return performances.stream()
+			.mapToLong(EnrichPerformance::amount)
+			.sum();
 	}
 
 	private static long totalVolumeCredits(final List<EnrichPerformance> performances) {
-		long result = 0;
-		for (var performance : performances) {
-			result += performance.volumeCredits();
-		}
-		return result;
+		return performances.stream()
+			.mapToLong(EnrichPerformance::volumeCredits)
+			.sum();
 	}
 }
