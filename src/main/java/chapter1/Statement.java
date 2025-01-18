@@ -25,9 +25,7 @@ public class Statement {
 			);
 		}
 
-		long totalAmount = appleSauce(invoice, plays);
-
-		result.append(String.format("총액: %s\n", usd(totalAmount)));
+		result.append(String.format("총액: %s\n", usd(appleSauce(invoice, plays))));
 		result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(invoice, plays)));
 		return result.toString();
 	}
