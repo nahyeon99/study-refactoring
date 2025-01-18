@@ -12,7 +12,6 @@ public class Statement {
 
 	public String statement(Invoice invoice, Map<String, Play> plays) {
 		long totalAmount = 0;
-		long volumnCredits = 0;
 		StringBuilder result = new StringBuilder("청구 내역 (고객명 : " + invoice.customer() + ")\n");
 
 		for (Performance performance : invoice.performances()) {
@@ -28,6 +27,7 @@ public class Statement {
 			totalAmount += amountFor(plays, performance);
 		}
 
+		long volumnCredits = 0;
 		for (Performance performance : invoice.performances()) {
 			volumnCredits += volumeCreditsFor(plays, performance);
 		}
