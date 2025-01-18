@@ -29,25 +29,9 @@ public class Statement {
 			);
 		}
 
-		result.append(String.format("총액: %s\n", usd(totalAmount(data))));
-		result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(data)));
+		result.append(String.format("총액: %s\n", usd(data.totalAmount())));
+		result.append(String.format("적립 포인트: %d점\n", data.totalVolumeCredits()));
 		return result.toString();
-	}
-
-	private long totalAmount(final StatementData data) {
-		long result = 0;
-		for (var performance : data.performances()) {
-			result += performance.amount();
-		}
-		return result;
-	}
-
-	private long totalVolumeCredits(final StatementData data) {
-		long result = 0;
-		for (var performance : data.performances()) {
-			result += performance.volumeCredits();
-		}
-		return result;
 	}
 
 	private String usd(long aNumber) {
