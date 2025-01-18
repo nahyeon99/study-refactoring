@@ -12,12 +12,12 @@ import chapter1.dto.StatementData;
 public class Statement {
 
 	public String statement(Invoice invoice, Map<String, Play> plays) {
-		StatementData statementData = new StatementData();
+		StatementData statementData = new StatementData(invoice.customer());
 		return renderPlainText(statementData, invoice, plays);
 	}
 
-	private String renderPlainText(StatementData statementData, Invoice invoice, Map<String, Play> plays) {
-		StringBuilder result = new StringBuilder("청구 내역 (고객명 : " + invoice.customer() + ")\n");
+	private String renderPlainText(StatementData data, Invoice invoice, Map<String, Play> plays) {
+		StringBuilder result = new StringBuilder("청구 내역 (고객명 : " + data.customer() + ")\n");
 
 		for (Performance performance : invoice.performances()) {
 			// 청구 내역을 출력한다.
