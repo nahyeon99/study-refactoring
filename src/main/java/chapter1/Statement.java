@@ -25,14 +25,19 @@ public class Statement {
 			);
 		}
 
-		long totalAmount = 0;
-		for (Performance performance : invoice.performances()) {
-			totalAmount += amountFor(plays, performance);
-		}
+		long totalAmount = appleSauce(invoice, plays);
 
 		result.append(String.format("총액: %s\n", usd(totalAmount)));
 		result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(invoice, plays)));
 		return result.toString();
+	}
+
+	private long appleSauce(Invoice invoice, Map<String, Play> plays) {
+		long result = 0;
+		for (Performance performance : invoice.performances()) {
+			result += amountFor(plays, performance);
+		}
+		return result;
 	}
 
 	private long totalVolumeCredits(Invoice invoice, Map<String, Play> plays) {
