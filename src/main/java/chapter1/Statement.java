@@ -12,14 +12,14 @@ import chapter1.dto.StatementData;
 public class Statement {
 
 	public String statement(Invoice invoice, Map<String, Play> plays) {
-		StatementData statementData = new StatementData(invoice.customer());
-		return renderPlainText(statementData, invoice, plays);
+		StatementData statementData = new StatementData(invoice.customer(), invoice.performances());
+		return renderPlainText(statementData, plays);
 	}
 
-	private String renderPlainText(StatementData data, Invoice invoice, Map<String, Play> plays) {
+	private String renderPlainText(StatementData data, Map<String, Play> plays) {
 		StringBuilder result = new StringBuilder("청구 내역 (고객명 : " + data.customer() + ")\n");
 
-		for (Performance performance : invoice.performances()) {
+		for (Performance performance : data.performances()) {
 			// 청구 내역을 출력한다.
 			result.append(
 				String.format(
@@ -31,22 +31,22 @@ public class Statement {
 			);
 		}
 
-		result.append(String.format("총액: %s\n", usd(totalAmount(invoice, plays))));
-		result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(invoice, plays)));
+		result.append(String.format("총액: %s\n", usd(totalAmount(data, plays))));
+		result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(data, plays)));
 		return result.toString();
 	}
 
-	private long totalAmount(Invoice invoice, Map<String, Play> plays) {
+	private long totalAmount(StatementData data, Map<String, Play> plays) {
 		long result = 0;
-		for (Performance performance : invoice.performances()) {
+		for (Performance performance : data.performances()) {
 			result += amountFor(plays, performance);
 		}
 		return result;
 	}
 
-	private long totalVolumeCredits(Invoice invoice, Map<String, Play> plays) {
+	private long totalVolumeCredits(StatementData data, Map<String, Play> plays) {
 		long result = 0;
-		for (Performance performance : invoice.performances()) {
+		for (Performance performance : data.performances()) {
 			result += volumeCreditsFor(plays, performance);
 		}
 		return result;
