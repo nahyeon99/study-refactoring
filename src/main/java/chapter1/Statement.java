@@ -48,7 +48,7 @@ public class Statement {
 			// 청구 내역을 출력한다.
 			result.append(
 				String.format(
-					"  %s: %s원 (%d석)\n",
+					"  %s: %s (%d석)\n",
 					play.name(),
 					format.format(thisAmount / 100.0),
 					performance.audience()
@@ -57,7 +57,7 @@ public class Statement {
 			totalAmount += thisAmount;
 		}
 
-		result.append(String.format("총액: %s원\n", format.format(totalAmount / 100.0)));
+		result.append(String.format("총액: %s\n", format.format(totalAmount / 100.0)));
 		result.append(String.format("적립 포인트: %d점\n", volumnCredits));
 		return result.toString();
 	}
