@@ -27,10 +27,8 @@ public class Statement {
 			totalAmount += amountFor(plays, performance);
 		}
 
-		long volumnCredits = totalVolumeCredits(invoice, plays);
-
 		result.append(String.format("총액: %s\n", usd(totalAmount)));
-		result.append(String.format("적립 포인트: %d점\n", volumnCredits));
+		result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(invoice, plays)));
 		return result.toString();
 	}
 
