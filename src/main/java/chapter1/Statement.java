@@ -27,14 +27,19 @@ public class Statement {
 			totalAmount += amountFor(plays, performance);
 		}
 
-		long volumnCredits = 0;
-		for (Performance performance : invoice.performances()) {
-			volumnCredits += volumeCreditsFor(plays, performance);
-		}
+		long volumnCredits = totalVolumeCredits(invoice, plays);
 
 		result.append(String.format("총액: %s\n", usd(totalAmount)));
 		result.append(String.format("적립 포인트: %d점\n", volumnCredits));
 		return result.toString();
+	}
+
+	private long totalVolumeCredits(Invoice invoice, Map<String, Play> plays) {
+		long result = 0;
+		for (Performance performance : invoice.performances()) {
+			result += volumeCreditsFor(plays, performance);
+		}
+		return result;
 	}
 
 	private String usd(long aNumber) {
