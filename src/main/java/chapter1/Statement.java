@@ -18,25 +18,7 @@ public class Statement {
 
 		for (Performance performance : invoice.performances()) {
 			final Play play = plays.get(performance.playID());
-			long thisAmount = 0;
-
-			switch (play.type()) {
-				case "tragedy":
-					thisAmount = 40_000;
-					if (performance.audience() > 30) {
-						thisAmount += 1_000 * (performance.audience() - 30);
-					}
-					break;
-				case "comedy":
-					thisAmount = 30_000;
-					if (performance.audience() > 20) {
-						thisAmount += 10_000 + 500 * (performance.audience() - 20);
-					}
-					thisAmount += 300 * performance.audience();
-					break;
-				default:
-					throw new IllegalArgumentException("unknown type: " + play.type());
-			}
+			long thisAmount = amountFor(performance, play);
 
 			// 포인트를 적립한다.
 			volumnCredits += Math.max(performance.audience() - 30, 0);
@@ -60,5 +42,27 @@ public class Statement {
 		result.append(String.format("총액: %s\n", format.format(totalAmount / 100.0)));
 		result.append(String.format("적립 포인트: %d점\n", volumnCredits));
 		return result.toString();
+	}
+
+	public long amountFor(Performance performance, Play play) {
+		long thisAmount = 0;
+		switch (play.type()) {
+			case "tragedy":
+				thisAmount = 40_000;
+				if (performance.audience() > 30) {
+					thisAmount += 1_000 * (performance.audience() - 30);
+				}
+				break;
+			case "comedy":
+				thisAmount = 30_000;
+				if (performance.audience() > 20) {
+					thisAmount += 10_000 + 500 * (performance.audience() - 20);
+				}
+				thisAmount += 300 * performance.audience();
+				break;
+			default:
+				throw new IllegalArgumentException("unknown type: " + play.type());
+		}
+		return thisAmount;
 	}
 }
