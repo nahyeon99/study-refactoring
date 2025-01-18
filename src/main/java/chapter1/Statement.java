@@ -28,7 +28,7 @@ public class Statement {
 				String.format(
 					"  %s: %s (%d석)\n",
 					performance.play().name(),
-					usd(amountFor(performance)),
+					usd(performance.amount()),
 					performance.audience()
 				)
 			);
@@ -42,7 +42,7 @@ public class Statement {
 	private long totalAmount(final StatementData data) {
 		long result = 0;
 		for (var performance : data.performances()) {
-			result += amountFor(performance);
+			result += performance.amount();
 		}
 		return result;
 	}
@@ -66,32 +66,6 @@ public class Statement {
 
 		if ("comedy".equals(aPerformance.play().type())) {
 			result += Math.floor(aPerformance.audience() / 5);
-		}
-		return result;
-	}
-
-	private Play playFor(final Map<String, Play> plays, final EnrichPerformance aPerformance) {
-		return plays.get(aPerformance.playID());
-	}
-
-	private long amountFor(final EnrichPerformance aPerformance) {
-		long result = 0;
-		switch (aPerformance.play().type()) {
-			case "tragedy":
-				result = 40_000;
-				if (aPerformance.audience() > 30) {
-					result += 1_000 * (aPerformance.audience() - 30);
-				}
-				break;
-			case "comedy":
-				result = 30_000;
-				if (aPerformance.audience() > 20) {
-					result += 10_000 + 500 * (aPerformance.audience() - 20);
-				}
-				result += 300 * aPerformance.audience();
-				break;
-			default:
-				throw new IllegalArgumentException("unknown type: " + aPerformance.play().type());
 		}
 		return result;
 	}
