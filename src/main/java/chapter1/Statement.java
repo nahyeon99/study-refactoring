@@ -14,7 +14,7 @@ public class Statement {
 	public String statement(Invoice invoice, Map<String, Play> plays) {
 		final StatementData statementData = new StatementData(invoice.customer(),
 			invoice.performances().stream()
-				.map(EnrichPerformance::new)
+				.map(aPerformance -> new EnrichPerformance(aPerformance, plays))
 				.toList());
 		return renderPlainText(statementData, plays);
 	}
