@@ -17,13 +17,12 @@ public class Statement {
 		final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
 		for (Performance performance : invoice.performances()) {
-			final Play play = playFor(plays, performance);
-			long thisAmount = amountFor(performance, play);
+			long thisAmount = amountFor(performance, playFor(plays, performance));
 
 			// 포인트를 적립한다.
 			volumnCredits += Math.max(performance.audience() - 30, 0);
 			// 희극 관객 5명마다 추가 포인트를 제공한다.
-			if ("comedy".equals(play.type())) {
+			if ("comedy".equals(playFor(plays, performance).type())) {
 				volumnCredits += Math.floor(performance.audience() / 5);
 			}
 
@@ -31,7 +30,7 @@ public class Statement {
 			result.append(
 				String.format(
 					"  %s: %s (%d석)\n",
-					play.name(),
+					playFor(plays, performance).name(),
 					format.format(thisAmount / 100.0),
 					performance.audience()
 				)
