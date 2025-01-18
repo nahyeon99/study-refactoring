@@ -4,22 +4,25 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
 
+import chapter1.dto.EnrichPerformance;
 import chapter1.dto.Invoice;
-import chapter1.dto.Performance;
 import chapter1.dto.Play;
 import chapter1.dto.StatementData;
 
 public class Statement {
 
 	public String statement(Invoice invoice, Map<String, Play> plays) {
-		StatementData statementData = new StatementData(invoice.customer(), invoice.performances());
+		final StatementData statementData = new StatementData(invoice.customer(),
+			invoice.performances().stream()
+				.map(EnrichPerformance::new)
+				.toList());
 		return renderPlainText(statementData, plays);
 	}
 
 	private String renderPlainText(StatementData data, Map<String, Play> plays) {
 		StringBuilder result = new StringBuilder("청구 내역 (고객명 : " + data.customer() + ")\n");
 
-		for (Performance performance : data.performances()) {
+		for (var performance : data.performances()) {
 			// 청구 내역을 출력한다.
 			result.append(
 				String.format(
@@ -36,17 +39,17 @@ public class Statement {
 		return result.toString();
 	}
 
-	private long totalAmount(StatementData data, Map<String, Play> plays) {
+	private long totalAmount(final StatementData data, final Map<String, Play> plays) {
 		long result = 0;
-		for (Performance performance : data.performances()) {
+		for (var performance : data.performances()) {
 			result += amountFor(plays, performance);
 		}
 		return result;
 	}
 
-	private long totalVolumeCredits(StatementData data, Map<String, Play> plays) {
+	private long totalVolumeCredits(final StatementData data, final Map<String, Play> plays) {
 		long result = 0;
-		for (Performance performance : data.performances()) {
+		for (var performance : data.performances()) {
 			result += volumeCreditsFor(plays, performance);
 		}
 		return result;
@@ -57,7 +60,7 @@ public class Statement {
 		return format.format(aNumber / 100.0);
 	}
 
-	private long volumeCreditsFor(Map<String, Play> plays, Performance aPerformance) {
+	private long volumeCreditsFor(final Map<String, Play> plays, final EnrichPerformance aPerformance) {
 		long result = 0;
 		result += Math.max(aPerformance.audience() - 30, 0);
 
@@ -67,11 +70,11 @@ public class Statement {
 		return result;
 	}
 
-	private Play playFor(Map<String, Play> plays, Performance aPerformance) {
+	private Play playFor(final Map<String, Play> plays, final EnrichPerformance aPerformance) {
 		return plays.get(aPerformance.playID());
 	}
 
-	private long amountFor(Map<String, Play> plays, Performance aPerformance) {
+	private long amountFor(final Map<String, Play> plays, final EnrichPerformance aPerformance) {
 		long result = 0;
 		switch (playFor(plays, aPerformance).type()) {
 			case "tragedy":
