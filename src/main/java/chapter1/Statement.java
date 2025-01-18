@@ -11,10 +11,10 @@ import chapter1.dto.StatementData;
 
 public class Statement {
 
-	public String statement(Invoice invoice, Map<String, Play> plays) {
+	public String statement(final Invoice invoice, final Map<String, Play> plays) {
 		final StatementData statementData = new StatementData(invoice.customer(),
 			invoice.performances().stream()
-				.map(aPerformance -> new EnrichPerformance(aPerformance, plays))
+				.map(aPerformance -> EnrichPerformance.from(aPerformance, plays))
 				.toList());
 		return renderPlainText(statementData);
 	}
