@@ -24,6 +24,9 @@ public class Statement {
 					performance.audience()
 				)
 			);
+		}
+
+		for (Performance performance : invoice.performances()) {
 			totalAmount += amountFor(plays, performance);
 		}
 
