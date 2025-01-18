@@ -7,14 +7,16 @@ import java.util.Map;
 import chapter1.dto.Invoice;
 import chapter1.dto.Performance;
 import chapter1.dto.Play;
+import chapter1.dto.StatementData;
 
 public class Statement {
 
 	public String statement(Invoice invoice, Map<String, Play> plays) {
-		return renderPlainText(invoice, plays);
+		StatementData statementData = new StatementData();
+		return renderPlainText(statementData, invoice, plays);
 	}
 
-	private String renderPlainText(Invoice invoice, Map<String, Play> plays) {
+	private String renderPlainText(StatementData statementData, Invoice invoice, Map<String, Play> plays) {
 		StringBuilder result = new StringBuilder("청구 내역 (고객명 : " + invoice.customer() + ")\n");
 
 		for (Performance performance : invoice.performances()) {
