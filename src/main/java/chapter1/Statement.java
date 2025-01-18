@@ -17,7 +17,7 @@ public class Statement {
 		final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
 		for (Performance performance : invoice.performances()) {
-			final Play play = plays.get(performance.playID());
+			final Play play = playFor(plays, performance);
 			long thisAmount = amountFor(performance, play);
 
 			// 포인트를 적립한다.
@@ -42,6 +42,10 @@ public class Statement {
 		result.append(String.format("총액: %s\n", format.format(totalAmount / 100.0)));
 		result.append(String.format("적립 포인트: %d점\n", volumnCredits));
 		return result.toString();
+	}
+
+	private Play playFor(Map<String, Play> plays, Performance aPerformance) {
+		return plays.get(aPerformance.playID());
 	}
 
 	private long amountFor(Performance aPerformance, Play play) {
