@@ -23,21 +23,21 @@ public class Statement {
 				String.format(
 					"  %s: %s (%d석)\n",
 					playFor(plays, performance).name(),
-					usd(amountFor(plays, performance) / 100.0),
+					usd(amountFor(plays, performance)),
 					performance.audience()
 				)
 			);
 			totalAmount += amountFor(plays, performance);
 		}
 
-		result.append(String.format("총액: %s\n", usd(totalAmount / 100.0)));
+		result.append(String.format("총액: %s\n", usd(totalAmount)));
 		result.append(String.format("적립 포인트: %d점\n", volumnCredits));
 		return result.toString();
 	}
 
-	private String usd(double aNumber) {
+	private String usd(long aNumber) {
 		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
-		return format.format(aNumber);
+		return format.format(aNumber / 100.0);
 	}
 
 	private long volumeCreditsFor(Map<String, Play> plays, Performance aPerformance) {
