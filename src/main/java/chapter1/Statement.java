@@ -25,12 +25,12 @@ public class Statement {
 			);
 		}
 
-		result.append(String.format("총액: %s\n", usd(appleSauce(invoice, plays))));
+		result.append(String.format("총액: %s\n", usd(totalAmount(invoice, plays))));
 		result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(invoice, plays)));
 		return result.toString();
 	}
 
-	private long appleSauce(Invoice invoice, Map<String, Play> plays) {
+	private long totalAmount(Invoice invoice, Map<String, Play> plays) {
 		long result = 0;
 		for (Performance performance : invoice.performances()) {
 			result += amountFor(plays, performance);
