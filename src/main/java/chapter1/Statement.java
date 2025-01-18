@@ -17,7 +17,6 @@ public class Statement {
 		final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
 		for (Performance performance : invoice.performances()) {
-			long thisAmount = amountFor(plays, performance);
 
 			// 포인트를 적립한다.
 			volumnCredits += Math.max(performance.audience() - 30, 0);
@@ -31,11 +30,11 @@ public class Statement {
 				String.format(
 					"  %s: %s (%d석)\n",
 					playFor(plays, performance).name(),
-					format.format(thisAmount / 100.0),
+					format.format(amountFor(plays, performance) / 100.0),
 					performance.audience()
 				)
 			);
-			totalAmount += thisAmount;
+			totalAmount += amountFor(plays, performance);
 		}
 
 		result.append(String.format("총액: %s\n", format.format(totalAmount / 100.0)));
