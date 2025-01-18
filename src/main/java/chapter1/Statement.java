@@ -36,12 +36,12 @@ public class Statement {
 		return result.toString();
 	}
 
-	private long volumeCreditsFor(Map<String, Play> plays, Performance performance) {
+	private long volumeCreditsFor(Map<String, Play> plays, Performance aPerformance) {
 		long volumnCredits = 0;
+		volumnCredits += Math.max(aPerformance.audience() - 30, 0);
 
-		volumnCredits += Math.max(performance.audience() - 30, 0);
-		if ("comedy".equals(playFor(plays, performance).type())) {
-			volumnCredits += Math.floor(performance.audience() / 5);
+		if ("comedy".equals(playFor(plays, aPerformance).type())) {
+			volumnCredits += Math.floor(aPerformance.audience() / 5);
 		}
 		return volumnCredits;
 	}
