@@ -4,7 +4,6 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.util.Map;
 
-import chapter1.dto.EnrichPerformance;
 import chapter1.dto.Invoice;
 import chapter1.dto.Play;
 import chapter1.dto.StatementData;
@@ -12,10 +11,7 @@ import chapter1.dto.StatementData;
 public class Statement {
 
 	public String statement(final Invoice invoice, final Map<String, Play> plays) {
-		final StatementData statementData = new StatementData(invoice.customer(),
-			invoice.performances().stream()
-				.map(aPerformance -> EnrichPerformance.from(aPerformance, plays))
-				.toList());
+		final StatementData statementData = StatementData.from(invoice, plays);
 		return renderPlainText(statementData);
 	}
 
