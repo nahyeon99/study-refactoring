@@ -17,7 +17,7 @@ public class Statement {
 		final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
 		for (Performance performance : invoice.performances()) {
-			long thisAmount = amountFor(performance, playFor(plays, performance));
+			long thisAmount = amountFor(plays, performance, playFor(plays, performance));
 
 			// 포인트를 적립한다.
 			volumnCredits += Math.max(performance.audience() - 30, 0);
@@ -47,9 +47,9 @@ public class Statement {
 		return plays.get(aPerformance.playID());
 	}
 
-	private long amountFor(Performance aPerformance, Play play) {
+	private long amountFor(Map<String, Play> plays, Performance aPerformance, Play play) {
 		long result = 0;
-		switch (play.type()) {
+		switch (playFor(plays, aPerformance).type()) {
 			case "tragedy":
 				result = 40_000;
 				if (aPerformance.audience() > 30) {
@@ -64,7 +64,7 @@ public class Statement {
 				result += 300 * aPerformance.audience();
 				break;
 			default:
-				throw new IllegalArgumentException("unknown type: " + play.type());
+				throw new IllegalArgumentException("unknown type: " + playFor(plays, aPerformance).type());
 		}
 		return result;
 	}
