@@ -50,7 +50,7 @@ public class Statement {
 	private long totalVolumeCredits(final StatementData data) {
 		long result = 0;
 		for (var performance : data.performances()) {
-			result += volumeCreditsFor(performance);
+			result += performance.volumeCredits();
 		}
 		return result;
 	}
@@ -58,15 +58,5 @@ public class Statement {
 	private String usd(long aNumber) {
 		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 		return format.format(aNumber / 100.0);
-	}
-
-	private long volumeCreditsFor(final EnrichPerformance aPerformance) {
-		long result = 0;
-		result += Math.max(aPerformance.audience() - 30, 0);
-
-		if ("comedy".equals(aPerformance.play().type())) {
-			result += Math.floor(aPerformance.audience() / 5);
-		}
-		return result;
 	}
 }
