@@ -16,8 +16,6 @@ public class Statement {
 		StringBuilder result = new StringBuilder("청구 내역 (고객명 : " + invoice.customer() + ")\n");
 
 		for (Performance performance : invoice.performances()) {
-			volumnCredits += volumeCreditsFor(plays, performance);
-
 			// 청구 내역을 출력한다.
 			result.append(
 				String.format(
@@ -28,6 +26,10 @@ public class Statement {
 				)
 			);
 			totalAmount += amountFor(plays, performance);
+		}
+
+		for (Performance performance : invoice.performances()) {
+			volumnCredits += volumeCreditsFor(plays, performance);
 		}
 
 		result.append(String.format("총액: %s\n", usd(totalAmount)));
