@@ -17,13 +17,7 @@ public class Statement {
 		final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
 		for (Performance performance : invoice.performances()) {
-
-			// 포인트를 적립한다.
-			volumnCredits += Math.max(performance.audience() - 30, 0);
-			// 희극 관객 5명마다 추가 포인트를 제공한다.
-			if ("comedy".equals(playFor(plays, performance).type())) {
-				volumnCredits += Math.floor(performance.audience() / 5);
-			}
+			volumnCredits += volumeCreditsFor(plays, performance);
 
 			// 청구 내역을 출력한다.
 			result.append(
@@ -40,6 +34,16 @@ public class Statement {
 		result.append(String.format("총액: %s\n", format.format(totalAmount / 100.0)));
 		result.append(String.format("적립 포인트: %d점\n", volumnCredits));
 		return result.toString();
+	}
+
+	private long volumeCreditsFor(Map<String, Play> plays, Performance performance) {
+		long volumnCredits = 0;
+
+		volumnCredits += Math.max(performance.audience() - 30, 0);
+		if ("comedy".equals(playFor(plays, performance).type())) {
+			volumnCredits += Math.floor(performance.audience() / 5);
+		}
+		return volumnCredits;
 	}
 
 	private Play playFor(Map<String, Play> plays, Performance aPerformance) {
