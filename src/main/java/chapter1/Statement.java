@@ -16,10 +16,10 @@ public class Statement {
 			invoice.performances().stream()
 				.map(aPerformance -> new EnrichPerformance(aPerformance, plays))
 				.toList());
-		return renderPlainText(statementData, plays);
+		return renderPlainText(statementData);
 	}
 
-	private String renderPlainText(StatementData data, Map<String, Play> plays) {
+	private String renderPlainText(final StatementData data) {
 		StringBuilder result = new StringBuilder("청구 내역 (고객명 : " + data.customer() + ")\n");
 
 		for (var performance : data.performances()) {
@@ -27,30 +27,30 @@ public class Statement {
 			result.append(
 				String.format(
 					"  %s: %s (%d석)\n",
-					playFor(plays, performance).name(),
-					usd(amountFor(plays, performance)),
+					performance.play().name(),
+					usd(amountFor(performance)),
 					performance.audience()
 				)
 			);
 		}
 
-		result.append(String.format("총액: %s\n", usd(totalAmount(data, plays))));
-		result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(data, plays)));
+		result.append(String.format("총액: %s\n", usd(totalAmount(data))));
+		result.append(String.format("적립 포인트: %d점\n", totalVolumeCredits(data)));
 		return result.toString();
 	}
 
-	private long totalAmount(final StatementData data, final Map<String, Play> plays) {
+	private long totalAmount(final StatementData data) {
 		long result = 0;
 		for (var performance : data.performances()) {
-			result += amountFor(plays, performance);
+			result += amountFor(performance);
 		}
 		return result;
 	}
 
-	private long totalVolumeCredits(final StatementData data, final Map<String, Play> plays) {
+	private long totalVolumeCredits(final StatementData data) {
 		long result = 0;
 		for (var performance : data.performances()) {
-			result += volumeCreditsFor(plays, performance);
+			result += volumeCreditsFor(performance);
 		}
 		return result;
 	}
@@ -60,11 +60,11 @@ public class Statement {
 		return format.format(aNumber / 100.0);
 	}
 
-	private long volumeCreditsFor(final Map<String, Play> plays, final EnrichPerformance aPerformance) {
+	private long volumeCreditsFor(final EnrichPerformance aPerformance) {
 		long result = 0;
 		result += Math.max(aPerformance.audience() - 30, 0);
 
-		if ("comedy".equals(playFor(plays, aPerformance).type())) {
+		if ("comedy".equals(aPerformance.play().type())) {
 			result += Math.floor(aPerformance.audience() / 5);
 		}
 		return result;
@@ -74,9 +74,9 @@ public class Statement {
 		return plays.get(aPerformance.playID());
 	}
 
-	private long amountFor(final Map<String, Play> plays, final EnrichPerformance aPerformance) {
+	private long amountFor(final EnrichPerformance aPerformance) {
 		long result = 0;
-		switch (playFor(plays, aPerformance).type()) {
+		switch (aPerformance.play().type()) {
 			case "tragedy":
 				result = 40_000;
 				if (aPerformance.audience() > 30) {
@@ -91,7 +91,7 @@ public class Statement {
 				result += 300 * aPerformance.audience();
 				break;
 			default:
-				throw new IllegalArgumentException("unknown type: " + playFor(plays, aPerformance).type());
+				throw new IllegalArgumentException("unknown type: " + aPerformance.play().type());
 		}
 		return result;
 	}
