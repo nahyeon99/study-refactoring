@@ -14,7 +14,6 @@ public class Statement {
 		long totalAmount = 0;
 		long volumnCredits = 0;
 		StringBuilder result = new StringBuilder("청구 내역 (고객명 : " + invoice.customer() + ")\n");
-		final NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
 
 		for (Performance performance : invoice.performances()) {
 			volumnCredits += volumeCreditsFor(plays, performance);
@@ -24,16 +23,21 @@ public class Statement {
 				String.format(
 					"  %s: %s (%d석)\n",
 					playFor(plays, performance).name(),
-					format.format(amountFor(plays, performance) / 100.0),
+					format(amountFor(plays, performance) / 100.0),
 					performance.audience()
 				)
 			);
 			totalAmount += amountFor(plays, performance);
 		}
 
-		result.append(String.format("총액: %s\n", format.format(totalAmount / 100.0)));
+		result.append(String.format("총액: %s\n", format(totalAmount / 100.0)));
 		result.append(String.format("적립 포인트: %d점\n", volumnCredits));
 		return result.toString();
+	}
+
+	private String format(double aNumber) {
+		NumberFormat format = NumberFormat.getCurrencyInstance(Locale.US);
+		return format.format(aNumber);
 	}
 
 	private long volumeCreditsFor(Map<String, Play> plays, Performance aPerformance) {
