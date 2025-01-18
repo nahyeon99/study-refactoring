@@ -11,8 +11,7 @@ import chapter1.dto.StatementData;
 public class Statement {
 
 	public String statement(final Invoice invoice, final Map<String, Play> plays) {
-		final StatementData statementData = StatementData.from(invoice, plays);
-		return renderPlainText(statementData);
+		return renderPlainText(StatementData.from(invoice, plays));
 	}
 
 	private String renderPlainText(final StatementData data) {
