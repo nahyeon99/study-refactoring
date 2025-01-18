@@ -45,24 +45,24 @@ public class Statement {
 	}
 
 	public long amountFor(Performance performance, Play play) {
-		long thisAmount = 0;
+		long result = 0;
 		switch (play.type()) {
 			case "tragedy":
-				thisAmount = 40_000;
+				result = 40_000;
 				if (performance.audience() > 30) {
-					thisAmount += 1_000 * (performance.audience() - 30);
+					result += 1_000 * (performance.audience() - 30);
 				}
 				break;
 			case "comedy":
-				thisAmount = 30_000;
+				result = 30_000;
 				if (performance.audience() > 20) {
-					thisAmount += 10_000 + 500 * (performance.audience() - 20);
+					result += 10_000 + 500 * (performance.audience() - 20);
 				}
-				thisAmount += 300 * performance.audience();
+				result += 300 * performance.audience();
 				break;
 			default:
 				throw new IllegalArgumentException("unknown type: " + play.type());
 		}
-		return thisAmount;
+		return result;
 	}
 }
