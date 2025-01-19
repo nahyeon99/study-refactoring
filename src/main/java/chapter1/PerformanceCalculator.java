@@ -42,4 +42,14 @@ public class PerformanceCalculator {
 		}
 		return result;
 	}
+
+	public long getVolumeCredits() {
+		long result = 0;
+		result += Math.max(performance.audience() - 30, 0);
+
+		if ("comedy".equals(play.type())) {
+			result += Math.floor(performance.audience() / 5);
+		}
+		return result;
+	}
 }
