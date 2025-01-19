@@ -14,7 +14,14 @@ public class PerformanceCalculator {
 	}
 
 	public static PerformanceCalculator from(final Performance performance, final Play play) {
-		return new PerformanceCalculator(performance, play);
+		switch (play.type()) {
+			case "tragedy":
+				return new TragedyCalculator(performance, play);
+			case "comedy":
+				return new ComedyCalculator(performance, play);
+			default:
+				throw new IllegalArgumentException("unknown type: " + play.type());
+		}
 	}
 
 	public Performance getPerformance() {
