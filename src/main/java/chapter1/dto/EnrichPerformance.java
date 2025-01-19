@@ -19,17 +19,7 @@ public record EnrichPerformance(
 			aPerformance.audience(),
 			calculator.getPlay(),
 			calculator.getAmount(),
-			volumeCreditsFor(aPerformance, calculator.getPlay()));
-	}
-
-	private static long volumeCreditsFor(final Performance aPerformance, final Play play) {
-		long result = 0;
-		result += Math.max(aPerformance.audience() - 30, 0);
-
-		if ("comedy".equals(play.type())) {
-			result += Math.floor(aPerformance.audience() / 5);
-		}
-		return result;
+			calculator.getVolumeCredits());
 	}
 
 	private static Play playFor(final Performance aPerformance, final Map<String, Play> plays) {
