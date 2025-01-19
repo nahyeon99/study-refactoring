@@ -14,41 +14,41 @@ public class PerformanceCalculator {
 	}
 
 	public Performance getPerformance() {
-		return performance;
+		return this.performance;
 	}
 
 	public Play getPlay() {
-		return play;
+		return this.play;
 	}
 
 	public long getAmount() {
 		long result = 0;
-		switch (play.type()) {
+		switch (this.play.type()) {
 			case "tragedy":
 				result = 40_000;
-				if (performance.audience() > 30) {
-					result += 1_000 * (performance.audience() - 30);
+				if (this.performance.audience() > 30) {
+					result += 1_000 * (this.performance.audience() - 30);
 				}
 				break;
 			case "comedy":
 				result = 30_000;
-				if (performance.audience() > 20) {
-					result += 10_000 + 500 * (performance.audience() - 20);
+				if (this.performance.audience() > 20) {
+					result += 10_000 + 500 * (this.performance.audience() - 20);
 				}
-				result += 300 * performance.audience();
+				result += 300 * this.performance.audience();
 				break;
 			default:
-				throw new IllegalArgumentException("unknown type: " + play.type());
+				throw new IllegalArgumentException("unknown type: " + this.play.type());
 		}
 		return result;
 	}
 
 	public long getVolumeCredits() {
 		long result = 0;
-		result += Math.max(performance.audience() - 30, 0);
+		result += Math.max(this.performance.audience() - 30, 0);
 
-		if ("comedy".equals(play.type())) {
-			result += Math.floor(performance.audience() / 5);
+		if ("comedy".equals(this.play.type())) {
+			result += Math.floor(this.performance.audience() / 5);
 		}
 		return result;
 	}
