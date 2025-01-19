@@ -3,7 +3,7 @@ package chapter1;
 import chapter1.dto.Performance;
 import chapter1.dto.Play;
 
-public class PerformanceCalculator {
+public abstract class PerformanceCalculator {
 
 	private final Performance performance;
 	private final Play play;
@@ -24,16 +24,14 @@ public class PerformanceCalculator {
 		}
 	}
 
+	public abstract long getAmount();
+
 	public Performance getPerformance() {
 		return this.performance;
 	}
 
 	public Play getPlay() {
 		return this.play;
-	}
-
-	public long getAmount() {
-		throw new IllegalStateException("서브클래스에서 처리하도록 설계되었습니다.");
 	}
 
 	public long getVolumeCredits() {
