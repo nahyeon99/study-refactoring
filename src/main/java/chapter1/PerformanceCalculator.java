@@ -8,9 +8,13 @@ public class PerformanceCalculator {
 	private final Performance performance;
 	private final Play play;
 
-	public PerformanceCalculator(final Performance performance, final Play play) {
+	protected PerformanceCalculator(final Performance performance, final Play play) {
 		this.performance = performance;
 		this.play = play;
+	}
+
+	public static PerformanceCalculator from(final Performance performance, final Play play) {
+		return new PerformanceCalculator(performance, play);
 	}
 
 	public Performance getPerformance() {

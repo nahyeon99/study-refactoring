@@ -12,8 +12,7 @@ public record EnrichPerformance(
 	long volumeCredits
 ) {
 	public static EnrichPerformance from(final Performance aPerformance, final Map<String, Play> plays) {
-		final PerformanceCalculator calculator = new PerformanceCalculator(aPerformance,
-			playFor(aPerformance, plays));
+		final PerformanceCalculator calculator = PerformanceCalculator.from(aPerformance, playFor(aPerformance, plays));
 
 		return new EnrichPerformance(aPerformance.playID(),
 			aPerformance.audience(),
