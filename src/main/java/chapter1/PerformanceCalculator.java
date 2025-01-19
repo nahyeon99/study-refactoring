@@ -8,19 +8,19 @@ public class PerformanceCalculator {
 	private final Performance performance;
 	private final Play play;
 
-	protected PerformanceCalculator(final Performance performance, final Play play) {
-		this.performance = performance;
-		this.play = play;
+	protected PerformanceCalculator(final Performance aPerformance, final Play aPlay) {
+		this.performance = aPerformance;
+		this.play = aPlay;
 	}
 
-	public static PerformanceCalculator from(final Performance performance, final Play play) {
-		switch (play.type()) {
+	public static PerformanceCalculator from(final Performance aPerformance, final Play aPlay) {
+		switch (aPlay.type()) {
 			case "tragedy":
-				return new TragedyCalculator(performance, play);
+				return new TragedyCalculator(aPerformance, aPlay);
 			case "comedy":
-				return new ComedyCalculator(performance, play);
+				return new ComedyCalculator(aPerformance, aPlay);
 			default:
-				throw new IllegalArgumentException("unknown type: " + play.type());
+				throw new IllegalArgumentException("unknown type: " + aPlay.type());
 		}
 	}
 
