@@ -20,4 +20,26 @@ public class PerformanceCalculator {
 	public Play getPlay() {
 		return play;
 	}
+
+	private long getAmount() {
+		long result = 0;
+		switch (play.type()) {
+			case "tragedy":
+				result = 40_000;
+				if (performance.audience() > 30) {
+					result += 1_000 * (performance.audience() - 30);
+				}
+				break;
+			case "comedy":
+				result = 30_000;
+				if (performance.audience() > 20) {
+					result += 10_000 + 500 * (performance.audience() - 20);
+				}
+				result += 300 * performance.audience();
+				break;
+			default:
+				throw new IllegalArgumentException("unknown type: " + play.type());
+		}
+		return result;
+	}
 }
