@@ -36,11 +36,7 @@ public class PerformanceCalculator {
 		long result = 0;
 		switch (this.play.type()) {
 			case "tragedy":
-				result = 40_000;
-				if (this.performance.audience() > 30) {
-					result += 1_000 * (this.performance.audience() - 30);
-				}
-				break;
+				throw new IllegalStateException("오류 발생");
 			case "comedy":
 				result = 30_000;
 				if (this.performance.audience() > 20) {
