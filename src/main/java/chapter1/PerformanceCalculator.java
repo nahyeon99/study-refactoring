@@ -21,7 +21,7 @@ public class PerformanceCalculator {
 		return play;
 	}
 
-	private long getAmount() {
+	public long getAmount() {
 		long result = 0;
 		switch (play.type()) {
 			case "tragedy":

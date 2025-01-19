@@ -18,7 +18,7 @@ public record EnrichPerformance(
 		return new EnrichPerformance(aPerformance.playID(),
 			aPerformance.audience(),
 			calculator.getPlay(),
-			amountFor(aPerformance, calculator.getPlay()),
+			calculator.getAmount(),
 			volumeCreditsFor(aPerformance, calculator.getPlay()));
 	}
 
@@ -28,28 +28,6 @@ public record EnrichPerformance(
 
 		if ("comedy".equals(play.type())) {
 			result += Math.floor(aPerformance.audience() / 5);
-		}
-		return result;
-	}
-
-	private static long amountFor(final Performance aPerformance, final Play play) {
-		long result = 0;
-		switch (play.type()) {
-			case "tragedy":
-				result = 40_000;
-				if (aPerformance.audience() > 30) {
-					result += 1_000 * (aPerformance.audience() - 30);
-				}
-				break;
-			case "comedy":
-				result = 30_000;
-				if (aPerformance.audience() > 20) {
-					result += 10_000 + 500 * (aPerformance.audience() - 20);
-				}
-				result += 300 * aPerformance.audience();
-				break;
-			default:
-				throw new IllegalArgumentException("unknown type: " + play.type());
 		}
 		return result;
 	}
