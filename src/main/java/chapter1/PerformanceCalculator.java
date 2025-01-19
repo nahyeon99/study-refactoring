@@ -33,21 +33,7 @@ public class PerformanceCalculator {
 	}
 
 	public long getAmount() {
-		long result = 0;
-		switch (this.play.type()) {
-			case "tragedy":
-				throw new IllegalStateException("오류 발생");
-			case "comedy":
-				result = 30_000;
-				if (this.performance.audience() > 20) {
-					result += 10_000 + 500 * (this.performance.audience() - 20);
-				}
-				result += 300 * this.performance.audience();
-				break;
-			default:
-				throw new IllegalArgumentException("unknown type: " + this.play.type());
-		}
-		return result;
+		throw new IllegalStateException("서브클래스에서 처리하도록 설계되었습니다.");
 	}
 
 	public long getVolumeCredits() {
