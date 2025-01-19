@@ -2,6 +2,8 @@ package chapter1.dto;
 
 import java.util.Map;
 
+import chapter1.PerformanceCalculator;
+
 public record EnrichPerformance(
 	String playID,
 	Integer audience,
@@ -10,12 +12,14 @@ public record EnrichPerformance(
 	long volumeCredits
 ) {
 	public static EnrichPerformance from(final Performance aPerformance, final Map<String, Play> plays) {
-		final Play play = playFor(aPerformance, plays);
+		final PerformanceCalculator calculator = new PerformanceCalculator(aPerformance,
+			playFor(aPerformance, plays));
+
 		return new EnrichPerformance(aPerformance.playID(),
 			aPerformance.audience(),
-			play,
-			amountFor(aPerformance, play),
-			volumeCreditsFor(aPerformance, play));
+			calculator.getPlay(),
+			amountFor(aPerformance, calculator.getPlay()),
+			volumeCreditsFor(aPerformance, calculator.getPlay()));
 	}
 
 	private static long volumeCreditsFor(final Performance aPerformance, final Play play) {
