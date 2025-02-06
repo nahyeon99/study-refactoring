@@ -5,7 +5,7 @@
 | 챕터 | 코드                                                                            | 내용정리                                                                                                        |
 |:--:|:------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------|
 | 01 | [리팩터링: 첫 번째 예시](https://github.com/nahyeon99/study-refactoring/tree/chapter1) | [**_링크_**](https://github.com/nahyeon99/study-refactoring/blob/chapter1/src/main/java/chapter1/Chapter1.md) |
-| 02 | 리팩터링 원칙                                                                       |                                                                                                             |
+| 02 | 리팩터링 원칙                                                                       | [**_링크_**](https://github.com/nahyeon99/study-refactoring/blob/chapter2/src/main/java/chapter2/Chapter2.md) |
 | 03 | 코드에서 나는 악취                                                                    |                                                                                                             |
 | 04 | 테스트 구축하기                                                                      |                                                                                                             |
 | 05 | 리팩터링 카탈로그 보는 법                                                                |                                                                                                             |
