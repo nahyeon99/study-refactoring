@@ -73,6 +73,18 @@ class ProvinceTest {
 		});
 	}
 
+	@Test
+	public void demand가_음수여도_성공한다() {
+		// when
+		asiaProvince.setDemand("-1");
+
+		// then
+		SoftAssertions.assertSoftly(softly -> {
+			assertThat(asiaProvince.getShortfall()).isEqualTo(-26);
+			assertThat(asiaProvince.getProfit()).isEqualTo(-10);
+		});
+	}
+
 	private List<Producer> getProducers() {
 		List<Producer> results = List.of(
 			new Producer(10, "Byzantium", 9),
