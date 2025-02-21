@@ -3,7 +3,6 @@ package chapter4;
 import static chapter4.JsonProvinceDataLoader.*;
 import static org.assertj.core.api.Assertions.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
@@ -83,6 +82,13 @@ class ProvinceTest {
 			assertThat(asiaProvince.getShortfall()).isEqualTo(-26);
 			assertThat(asiaProvince.getProfit()).isEqualTo(-10);
 		});
+	}
+
+	@Test
+	public void demand가_비면_예외를_던진다() {
+		// then
+		assertThatThrownBy(() -> asiaProvince.setDemand(""))
+			.isInstanceOf(NumberFormatException.class);
 	}
 
 	private List<Producer> getProducers() {
