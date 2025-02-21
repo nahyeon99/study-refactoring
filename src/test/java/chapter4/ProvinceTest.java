@@ -90,13 +90,4 @@ class ProvinceTest {
 		assertThatThrownBy(() -> asiaProvince.setDemand(""))
 			.isInstanceOf(NumberFormatException.class);
 	}
-
-	private List<Producer> getProducers() {
-		List<Producer> results = List.of(
-			new Producer(10, "Byzantium", 9),
-			new Producer(12, "Attalia", 10),
-			new Producer(10, "Sinope", 6)
-		);
-		return results;
-	}
 }
