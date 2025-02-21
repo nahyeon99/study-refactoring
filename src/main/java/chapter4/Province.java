@@ -24,9 +24,9 @@ public class Province {
 		producers.forEach(this::addProducer);
 	}
 
-	public Province(ProvinceData provinceData) {
-		this(provinceData.name(), provinceData.totalProduction(), provinceData.demand(), provinceData.price(),
-			provinceData.producers());
+	public Province(ProvinceCreate provinceCreate) {
+		this(provinceCreate.name(), provinceCreate.totalProduction(), provinceCreate.demand(), provinceCreate.price(),
+			provinceCreate.producers());
 	}
 
 	public String getName() {

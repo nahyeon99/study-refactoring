@@ -2,7 +2,7 @@ package chapter4;
 
 import java.util.List;
 
-public record ProvinceData(
+public record ProvinceCreate(
 	String name,
 	Integer totalProduction,
 	Integer demand,
