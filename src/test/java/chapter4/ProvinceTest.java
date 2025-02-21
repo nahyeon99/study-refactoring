@@ -26,6 +26,15 @@ class ProvinceTest {
 		assertThat(shortfall).isEqualTo(5);
 	}
 
+	@Test
+	public void 총수익_계산에_성공한다() {
+		// when
+		Integer profit = asiaProvince.getProfit();
+
+		// then
+		assertThat(profit).isEqualTo(230);
+	}
+
 	private List<Producer> getProducers() {
 		List<Producer> results = List.of(
 			new Producer(10, "Byzantium", 9),
