@@ -25,7 +25,7 @@ public class Province {
 	}
 
 	public Province(ProvinceCreate provinceCreate) {
-		this(provinceCreate.name(), provinceCreate.totalProduction(), provinceCreate.demand(), provinceCreate.price(),
+		this(provinceCreate.name(), 0, provinceCreate.demand(), provinceCreate.price(),
 			provinceCreate.producers());
 	}
 

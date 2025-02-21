@@ -4,9 +4,8 @@ import java.util.List;
 
 public record ProvinceCreate(
 	String name,
-	Integer totalProduction,
+	List<Producer> producers,
 	Integer demand,
-	Integer price,
-	List<Producer> producers
+	Integer price
 ) {
 }
