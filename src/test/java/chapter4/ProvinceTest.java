@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 
 import java.util.List;
 
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +34,18 @@ class ProvinceTest {
 
 		// then
 		assertThat(profit).isEqualTo(230);
+	}
+
+	@Test
+	public void production_변경에_성공한다() {
+		// when
+		asiaProvince.getProducers().get(0).setProduction("20");
+
+		// then
+		SoftAssertions.assertSoftly(softly -> {
+			assertThat(asiaProvince.getShortfall()).isEqualTo(-6);
+			assertThat(asiaProvince.getProfit()).isEqualTo(292);
+		});
 	}
 
 	private List<Producer> getProducers() {
