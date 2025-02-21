@@ -3,6 +3,7 @@ package chapter4;
 import static chapter4.JsonProvinceDataLoader.*;
 import static org.assertj.core.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.assertj.core.api.SoftAssertions;
@@ -45,6 +46,18 @@ class ProvinceTest {
 		SoftAssertions.assertSoftly(softly -> {
 			assertThat(asiaProvince.getShortfall()).isEqualTo(-6);
 			assertThat(asiaProvince.getProfit()).isEqualTo(292);
+		});
+	}
+
+	@Test
+	public void producers_컬렉션이_비어도_성공한다() {
+		// when
+		Province noProducers = new Province(new ProvinceCreate("No Producers", List.of(), 30, 20));
+
+		// then
+		SoftAssertions.assertSoftly(softly -> {
+			assertThat(noProducers.getShortfall()).isEqualTo(30);
+			assertThat(noProducers.getProfit()).isEqualTo(0);
 		});
 	}
 
