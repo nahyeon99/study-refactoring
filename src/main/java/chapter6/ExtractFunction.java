@@ -24,19 +24,19 @@ public class ExtractFunction {
 		return outstanding;
 	}
 
-	private static void recordDueDate(Invoice invoice) {
+	private void recordDueDate(Invoice invoice) {
 		LocalDate today = LocalDate.now();
 		invoice.updateDueDate(today.plusDays(30));
 	}
 
-	private static void printDetails(Invoice invoice, int outstanding) {
+	private void printDetails(Invoice invoice, int outstanding) {
 		// 세부사항을 출력한다.
 		System.out.println("고객명 : " + invoice.getCustomer());
 		System.out.println("채무액 : " + outstanding);
 		System.out.println("마감일 : " + invoice.getDueDate().toString());
 	}
 
-	private static void printBanner() {
+	private void printBanner() {
 		System.out.println("*** 고객 채무 ***");
 	}
 
