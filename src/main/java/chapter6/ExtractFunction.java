@@ -6,11 +6,10 @@ import java.util.List;
 public class ExtractFunction {
 
 	public void printOwing(Invoice invoice) {
-		int outstanding = 0;
-
 		printBanner();
 
 		// 미해결 채무(outstanding)를 계산한다.
+		int outstanding = 0;
 		for (Order order : invoice.getOrders()) {
 			outstanding += order.amount();
 		}
