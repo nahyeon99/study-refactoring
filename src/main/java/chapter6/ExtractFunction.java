@@ -19,6 +19,15 @@ public class ExtractFunction {
 		printDetails(invoice, outstanding);
 	}
 
+	private int calculateOutstanding(Invoice invoice) {
+		// 미해결 채무(outstanding)를 계산한다.
+		int outstanding = 0;
+		for (Order order : invoice.getOrders()) {
+			outstanding += order.amount();
+		}
+		return outstanding;
+	}
+
 	private static void recordDueDate(Invoice invoice) {
 		LocalDate today = LocalDate.now();
 		invoice.updateDueDate(today.plusDays(30));
