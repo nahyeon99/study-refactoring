@@ -15,11 +15,14 @@ public class ExtractFunction {
 			outstanding += order.amount();
 		}
 
-		// 마감일(dueDate)을 기록한다.
-		LocalDate today = LocalDate.now();
-		invoice.updateDueDate(today.plusDays(30));
+		recordDueDate(invoice);
 
 		printDetails(invoice, outstanding);
+	}
+
+	private static void recordDueDate(Invoice invoice) {
+		LocalDate today = LocalDate.now();
+		invoice.updateDueDate(today.plusDays(30));
 	}
 
 	private static void printDetails(Invoice invoice, int outstanding) {
