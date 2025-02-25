@@ -7,21 +7,17 @@ public class ExtractFunction {
 
 	public void printOwing(Invoice invoice) {
 		printBanner();
-
-		// 미해결 채무(outstanding)를 계산한다.
 		int outstanding = calculateOutstanding(invoice);
-
 		recordDueDate(invoice);
 		printDetails(invoice, outstanding);
 	}
 
 	private int calculateOutstanding(Invoice invoice) {
-		// 미해결 채무(outstanding)를 계산한다.
-		int outstanding = 0;
+		int result = 0;
 		for (Order order : invoice.getOrders()) {
-			outstanding += order.amount();
+			result += order.amount();
 		}
-		return outstanding;
+		return result;
 	}
 
 	private void recordDueDate(Invoice invoice) {
@@ -30,7 +26,6 @@ public class ExtractFunction {
 	}
 
 	private void printDetails(Invoice invoice, int outstanding) {
-		// 세부사항을 출력한다.
 		System.out.println("고객명 : " + invoice.getCustomer());
 		System.out.println("채무액 : " + outstanding);
 		System.out.println("마감일 : " + invoice.getDueDate().toString());
