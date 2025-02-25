@@ -11,13 +11,9 @@ public class InlineFunction {
 
 	public Map<String, String> reportLines(Customer aCustomer) {
 		Map<String, String> outputs = new HashMap<>();
-		gatherCustomer(outputs, aCustomer);
+		outputs.put("name", aCustomer.name());
+		outputs.put("location", aCustomer.location());
 		return outputs;
-	}
-
-	private void gatherCustomer(Map<String, String> results, Customer aCustomer) {
-		results.put("name", aCustomer.name());
-		results.put("location", aCustomer.location());
 	}
 
 	public static void main(String[] args) {
