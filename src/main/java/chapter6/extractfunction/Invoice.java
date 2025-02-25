@@ -1,4 +1,4 @@
-package chapter6;
+package chapter6.extractfunction;
 
 import java.time.LocalDate;
 import java.util.Collections;

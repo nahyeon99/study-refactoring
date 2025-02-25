@@ -1,4 +1,4 @@
-package chapter6;
+package chapter6.inlinefunction;
 
 public record Customer(
 	String name,

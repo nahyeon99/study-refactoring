@@ -1,4 +1,4 @@
-package chapter6;
+package chapter6.inlinefunction;
 
 import java.util.HashMap;
 import java.util.Map;
