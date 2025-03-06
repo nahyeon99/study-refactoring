@@ -15,7 +15,7 @@ public class DefaultOwner {
 	}
 
 	public DefaultOwner() {
-		this.spaceship = new Spaceship(this.defaultOwner);
+		this.spaceship = new Spaceship(getDefaultOwner());
 	}
 
 	public Map<String, String> getDefaultOwner() {
