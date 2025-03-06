@@ -5,8 +5,7 @@ import java.util.Map;
 
 public class DefaultOwner {
 
-	public Map<String, String> defaultOwner = new HashMap<>();
-
+	private Map<String, String> defaultOwner = new HashMap<>();
 	private Spaceship spaceship;
 
 	{
