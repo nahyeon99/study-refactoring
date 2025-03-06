@@ -1,4 +1,4 @@
-package chapter6.changeFunctionDeclaration;
+package chapter6.encapsulatevariable;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package chapter6.changeFunctionDeclaration;
+package chapter6.changefunctiondeclaration;
 
 public record Address(
 	String state
