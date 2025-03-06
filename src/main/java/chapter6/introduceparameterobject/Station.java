@@ -13,9 +13,9 @@ public class Station {
 		this.rendings = new ArrayList<>(rendings);
 	}
 
-	public List<Rending> readingsOutsideRange(int min, int max) {
+	public List<Rending> readingsOutsideRange(int min, int max, NumberRange range) {
 		return rendings.stream()
-			.filter(r -> r.isOutsideRange(min, max))
+			.filter(r -> r.isOutsideRange(min, max, range))
 			.collect(Collectors.toUnmodifiableList());
 	}
 }
