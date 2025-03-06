@@ -10,7 +10,7 @@
 | 04 | [테스트 구축하기](https://github.com/nahyeon99/study-refactoring/tree/chapter4)      | [**_링크_**](https://github.com/nahyeon99/study-refactoring/blob/chapter4/src/main/java/chapter4/Chapter4.md) |
 | 05 | 리팩터링 카탈로그 보는 법                                                                | [**_링크_**](https://github.com/nahyeon99/study-refactoring/blob/chapter5/src/main/java/chapter5/Chapter5.md) |
 | 06 | [기본적인 리팩터링](https://github.com/nahyeon99/study-refactoring/tree/chapter6)     | [**_링크_**](https://github.com/nahyeon99/study-refactoring/blob/chapter6/src/main/java/chapter6/Chapter6.md) |
-| 07 | 캡슐화                                                                           |                                                                                                             |
+| 07 | [캡슐화](https://github.com/nahyeon99/study-refactoring/tree/chapter7)           | [**_링크_**](https://github.com/nahyeon99/study-refactoring/blob/chapter7/src/main/java/chapter7/Chapter7.md) |
 | 08 | 기능 이동                                                                         |                                                                                                             |
 | 09 | 데이터 조직화                                                                       |                                                                                                             |
 | 10 | 조건부 로직 간소화                                                                    |                                                                                                             |
