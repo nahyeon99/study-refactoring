@@ -7,11 +7,7 @@ public class Book {
 
 	private List<String> reservations = new ArrayList<>();
 
-	public void addReservation(String customer) {
-		this.zz_addReservation(customer, false);
-	}
-
-	public void zz_addReservation(String customer, boolean isPriority) {
+	public void addReservation(String customer, boolean isPriority) {
 		assert isPriority || !isPriority;
 		this.reservations.add(customer);
 	}
