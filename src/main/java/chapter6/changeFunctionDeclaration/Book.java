@@ -12,6 +12,7 @@ public class Book {
 	}
 
 	public void zz_addReservation(String customer, boolean isPriority) {
+		assert isPriority || !isPriority;
 		this.reservations.add(customer);
 	}
 }
