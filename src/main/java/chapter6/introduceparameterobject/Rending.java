@@ -12,7 +12,7 @@ public class Rending {
 		this.time = time;
 	}
 
-	public boolean isOutsideRange(NumberRange range) {
-		return temp < range.min() || temp > range.max();
+	public int getTemp() {
+		return this.temp;
 	}
 }

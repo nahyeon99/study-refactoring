@@ -15,7 +15,7 @@ public class Station {
 
 	public List<Rending> readingsOutsideRange(NumberRange range) {
 		return rendings.stream()
-			.filter(r -> r.isOutsideRange(range))
+			.filter(r -> !range.contains(r.getTemp()))
 			.collect(Collectors.toUnmodifiableList());
 	}
 }
