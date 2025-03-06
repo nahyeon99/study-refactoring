@@ -1,4 +1,4 @@
-package chapter6.introduceParameterObject;
+package chapter6.introduceparameterobject;
 
 import java.util.ArrayList;
 import java.util.List;
