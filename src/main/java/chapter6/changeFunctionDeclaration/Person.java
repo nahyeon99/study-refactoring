@@ -6,7 +6,8 @@ import java.util.List;
 public class Person {
 
 	public boolean inNewEngland(Customer aCustomer) {
-		return List.of("MA", "CT", "ME", "VT", "NH", "RI").contains(aCustomer.address().state());
+		final String stateCode = aCustomer.address().state();
+		return List.of("MA", "CT", "ME", "VT", "NH", "RI").contains(stateCode);
 	}
 
 	public void test() {
