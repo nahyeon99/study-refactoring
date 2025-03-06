@@ -13,9 +13,18 @@ public class Order {
 	}
 
 	public double calculatePrice() {
-		final int basePrice = quantity * itemPrice;
-		final double quantityDiscount = Math.max(0, quantity - 500) * itemPrice * 0.05;
-		double shipping = Math.min(basePrice * 0.1, 100);
-		return basePrice - quantityDiscount + shipping;
+		return getBasePrice() - getQuantityDiscount() + getShipping(getBasePrice());
+	}
+
+	private double getShipping(int basePrice) {
+		return Math.min(basePrice * 0.1, 100);
+	}
+
+	private double getQuantityDiscount() {
+		return Math.max(0, quantity - 500) * itemPrice * 0.05;
+	}
+
+	private int getBasePrice() {
+		return quantity * itemPrice;
 	}
 }
