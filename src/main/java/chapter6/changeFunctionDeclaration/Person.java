@@ -19,7 +19,7 @@ public class Person {
 		someCustomers.add(new Customer(new Address("MB")));
 
 		List<Customer> newEnglanders = someCustomers.stream()
-			.filter(this::inNewEngland)
+			.filter(c -> xxNEWinNewEngland(c.address().state()))
 			.toList();
 	}
 
