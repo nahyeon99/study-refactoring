@@ -8,10 +8,10 @@ public class Book {
 	private List<String> reservations = new ArrayList<>();
 
 	public void addReservation(String customer) {
-		this.zz_addReservation(customer);
+		this.zz_addReservation(customer, false);
 	}
 
-	public void zz_addReservation(String customer) {
+	public void zz_addReservation(String customer, boolean isPriority) {
 		this.reservations.add(customer);
 	}
 }
