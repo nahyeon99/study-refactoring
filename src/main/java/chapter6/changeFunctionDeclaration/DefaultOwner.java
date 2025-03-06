@@ -13,12 +13,14 @@ public class DefaultOwner {
 		defaultOwner.put("lastName", "김");
 	}
 
-	public DefaultOwner() {
-		this.spaceship = new Spaceship(getDefaultOwner());
+	public DefaultOwner(String firstName, String lastName) {
+		HashMap<String, String> defaultOwner = new HashMap<>();
+		this.defaultOwner = defaultOwner;
+		this.spaceship = Spaceship.from(firstName, lastName);
 	}
 
-	public Map<String, String> getDefaultOwner() {
-		return defaultOwner;
+	public DefaultOwner getDefaultOwner() {
+		return new DefaultOwner(defaultOwner.get("firstName"), defaultOwner.get("lastName"));
 	}
 
 	public void updateDefaultOwner(String firstName, String lastName) {
