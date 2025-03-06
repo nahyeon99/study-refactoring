@@ -18,6 +18,10 @@ public class DefaultOwner {
 		this.spaceship = new Spaceship(this.defaultOwner);
 	}
 
+	public Map<String, String> getDefaultOwner() {
+		return defaultOwner;
+	}
+
 	public void updateDefaultOwner(String firstName, String lastName) {
 		defaultOwner.put("firstName", "마틴");
 		defaultOwner.put("lastName", "파울러");
