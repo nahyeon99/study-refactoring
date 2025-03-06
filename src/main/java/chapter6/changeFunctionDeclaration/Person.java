@@ -6,8 +6,7 @@ import java.util.List;
 public class Person {
 
 	public boolean inNewEngland(Customer aCustomer) {
-		final String stateCode = aCustomer.address().state();
-		return xxNEWinNewEngland(stateCode);
+		return xxNEWinNewEngland(aCustomer.address().state());
 	}
 
 	private boolean xxNEWinNewEngland(String stateCode) {
